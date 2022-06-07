@@ -18,8 +18,8 @@ const UsersRouter = require('./routers/usersRouter')
 const ItemsRouter = require('./routers/itemsRouter')
 
 // initialize routers
-const usersRouter = new UsersRouter(userController).router()
-const itemsRouter = new ItemsRouter(itemsController).router()
+const usersRouter = new UsersRouter(userController).routes()
+const itemsRouter = new ItemsRouter(itemsController).routes()
 
 // below is where we put things together
 const app = express()
@@ -30,6 +30,7 @@ app.use(express.static("public"));
 app.use(cookieParser())
 
 
+app.get('/', (req, res)=> res.render('axios'))
 
 app.use('/users', usersRouter)
 app.use('/items', itemsRouter)

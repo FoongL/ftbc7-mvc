@@ -1,3 +1,5 @@
+const res = require("express/lib/response")
+
 class BaseController {
     constructor(model){
         this.model = model
@@ -9,9 +11,20 @@ class BaseController {
 
     async insertOne(req, res){
         console.log('i am trying to insert')
-        const {data} = req.body
+        try{
+        const data = req.body
         const output = await this.model.create({...data})
         res.status(200).json(output)
+        } catch(err){
+            console.log(err)
+        }
+    }
+
+
+    errorHandler(code,  msg){
+        let status = code || 400
+
+        res.status(status).send(msg)
     }
 }
 
