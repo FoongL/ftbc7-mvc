@@ -1,13 +1,17 @@
 const BaseController = require('./baseController')
+// const db = require('../models/index')
 
 class UserController extends BaseController {
-    constructor(model){
-        super(model)
+    constructor(model, db){
+        super(model),
+        this.items = db.items
     }
 
-    userTest(req,res){
-        res.send('i am in the user controller')
+    async userTest(req,res){
+        const check = await this.items.findAll()
     }
+
+
 }
 
 module.exports = UserController

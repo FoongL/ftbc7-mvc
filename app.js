@@ -10,8 +10,8 @@ const UsersController = require('./controllers/usersController.js')
 const ItemsController = require('./controllers/itemsController.js')
 
 // initializing Controllers
-const userController = new UsersController(db.users)
-const itemsController = new ItemsController(db.items)
+const userController = new UsersController(db.users, db)
+const itemsController = new ItemsController(db.items, db)
 
 // import routers 
 const UsersRouter = require('./routers/usersRouter')

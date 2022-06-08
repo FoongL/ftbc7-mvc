@@ -14,7 +14,7 @@ class BaseController {
         try{
         const data = req.body
         const output = await this.model.create({...data})
-        res.status(200).json(output)
+        res.json(output)
         } catch(err){
             console.log(err)
         }

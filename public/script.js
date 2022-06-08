@@ -1,3 +1,5 @@
+const { isWindows } = require("nodemon/lib/utils")
+
 const button = document.getElementById('posting')
 
 button.addEventListener('click', async ()=>{
@@ -14,7 +16,6 @@ button.addEventListener('click', async ()=>{
 
     const result = await axios.post('/users/add-user', body)
     console.log(result)
-
     // DOM manipulation
     const output = document.getElementById('output')
     const data = document.createElement('p')
