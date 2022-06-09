@@ -8,18 +8,22 @@ const db = require('./models/index.js')
 // import controllers
 const UsersController = require('./controllers/usersController.js')
 const ItemsController = require('./controllers/itemsController.js')
+const CategoryController = require('./controllers/categoryController.js')
 
 // initializing Controllers
 const userController = new UsersController(db.users, db)
 const itemsController = new ItemsController(db.items, db)
+const categoryController = new CategoryController(db.categories, db)
 
 // import routers 
 const UsersRouter = require('./routers/usersRouter')
 const ItemsRouter = require('./routers/itemsRouter')
+const CategoryRouter = require('./routers/categoryRouter')
 
 // initialize routers
 const usersRouter = new UsersRouter(userController).routes()
 const itemsRouter = new ItemsRouter(itemsController).routes()
+const categoryRouter = new CategoryRouter(categoryController).routes()
 
 // below is where we put things together
 const app = express()
@@ -34,6 +38,7 @@ app.get('/', (req, res)=> res.render('axios'))
 
 app.use('/users', usersRouter)
 app.use('/items', itemsRouter)
+app.use('/categories', categoryRouter)
 
 const PORT = 3004
 

@@ -11,6 +11,8 @@ class UsersRouter {
         router.get('/', this.controller.testRoute.bind(this.controller))
         router.get('/userTest', this.controller.userTest.bind(this.controller))
         router.post('/add-user', this.controller.insertOne.bind(this.controller))
+        router.get('/user-items/:id', this.controller.getUserItems.bind(this.controller))
+        router.get('/user-items-cat/:id', this.controller.getUserItemsWithCat.bind(this.controller))
         return router
     }
 }

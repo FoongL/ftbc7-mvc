@@ -15,6 +15,9 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+
+// default from sequlize init command
+
 // fs
 //   .readdirSync(__dirname)
 //   .filter(file => {
@@ -26,17 +29,31 @@ if (config.use_env_variable) {
 //   });
 
 
-// alternative way to do it
+// alternative way to do it (Rocket Gitbook way)
 
 // import our models
-const initUsersModel= require('./users')(sequelize, Sequelize.DataTypes)
-db.users = initUsersModel
+const initUsersModel= require('./users')
+const initItemModel = require('./items')
+const initCategoriesModel = require('./categories');
 
-// Object.keys(db).forEach(modelName => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
+db.users = initUsersModel(sequelize, Sequelize.DataTypes)
+db.items = initItemModel(sequelize, Sequelize.DataTypes)
+db.categories = initCategoriesModel(sequelize, Sequelize.DataTypes)
+
+// Associations:
+
+// One to Many
+db.users.hasMany(db.items)
+db.items.belongsTo(db.users)
+
+
+
+// Many to Many
+db.items.belongsToMany(db.categories, {through: 'category-item'})
+db.categories.belongsToMany(db.items, {through: 'category-item'})
+
+// db.items.belongsToMany(db.categories)
+// db.categories.belongsToMany(db.items)
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

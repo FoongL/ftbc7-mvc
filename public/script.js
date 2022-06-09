@@ -1,5 +1,3 @@
-const { isWindows } = require("nodemon/lib/utils")
-
 const button = document.getElementById('posting')
 
 button.addEventListener('click', async ()=>{
