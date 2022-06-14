@@ -43,8 +43,8 @@ db.categories = initCategoriesModel(sequelize, Sequelize.DataTypes)
 // Associations:
 
 // One to Many
-db.users.hasMany(db.items)
-db.items.belongsTo(db.users)
+// db.users.hasMany(db.items)
+// db.items.belongsTo(db.users)
 
 
 
