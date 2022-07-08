@@ -9,6 +9,10 @@ class BaseController {
         res.send('THIS WORKS!')
     }
 
+    newThing(req,res){
+        res.send('newThing')
+    }
+
     async insertOne(req, res){
         console.log('i am trying to insert')
         try{
