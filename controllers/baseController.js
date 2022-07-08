@@ -8,6 +8,9 @@ class BaseController {
     testRoute(req,res){
         res.send('THIS WORKS!')
     }
+    newThing(req,res){
+        res.resn('new thing')
+    }
 
     newThing(req,res){
         console.log('I am doing more things lah lahl ahla hlahl')
