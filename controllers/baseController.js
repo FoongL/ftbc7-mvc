@@ -10,7 +10,12 @@ class BaseController {
     }
 
     newThing(req,res){
+        console.log('I am doing more things lah lahl ahla hlahl')
         res.send('newThing')
+    }
+
+    anotherone(req,res){
+        res.send('DJ KHALID')
     }
 
     async insertOne(req, res){
