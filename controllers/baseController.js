@@ -9,7 +9,7 @@ class BaseController {
         res.send('THIS WORKS!')
     }
     newThing(req,res){
-        res.resn('new thing')
+        res.resn('trying to destroy this again and again')
     }
 
     newThing(req,res){
