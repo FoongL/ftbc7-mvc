@@ -9,7 +9,7 @@ class BaseController {
         res.send('THIS WORKS!')
     }
     newThing(req,res){
-        res.resn('trying to destroy this')
+        res.resn('trying to destroy this again and again')
     }
 
     async insertOne(req, res){
