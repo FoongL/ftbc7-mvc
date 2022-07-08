@@ -8,6 +8,9 @@ class BaseController {
     testRoute(req,res){
         res.send('THIS WORKS!')
     }
+    newThing(req,res){
+        res.resn('new thing')
+    }
 
     async insertOne(req, res){
         console.log('i am trying to insert')
