@@ -21,6 +21,10 @@ class BaseController {
         res.send('DJ KHALID')
     }
 
+    anotherNewOne(req,res){
+        res.send('MORE KHALID')
+    }
+
     async insertOne(req, res){
         console.log('i am trying to insert')
         try{
