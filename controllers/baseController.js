@@ -6,14 +6,19 @@ class BaseController {
     }
 
     testRoute(req,res){
-        res.send('THIS WORKS!')
+        res.send(process.env.testRoute)
     }
     newThing(req,res){
-        res.resn('trying to destroy this again and again')
+        res.send('new thing')
     }
 
     newThing(req,res){
-        res.send('newThing')
+        console.log('I am doing more things lah lahl ahla hlahl')
+        res.send('newerThing')
+    }
+
+    anotherone(req,res){
+        res.send('DJ KHALID')
     }
 
     async insertOne(req, res){

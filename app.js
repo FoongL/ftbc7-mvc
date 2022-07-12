@@ -1,6 +1,7 @@
 // importing useful packages
 const express = require('express')
 const cookieParser = require('cookie-parser')
+require('dotenv').config()
 
 // import models
 const db = require('./models/index.js')
@@ -40,6 +41,6 @@ app.use('/users', usersRouter)
 app.use('/items', itemsRouter)
 app.use('/categories', categoryRouter)
 
-const PORT = 3004
+const PORT = process.env.PORT
 
 app.listen(PORT, ()=>console.log(`App listening on post ${PORT}`))
