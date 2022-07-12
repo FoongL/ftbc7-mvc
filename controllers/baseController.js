@@ -6,7 +6,7 @@ class BaseController {
     }
 
     testRoute(req,res){
-        res.send('THIS WORKS!')
+        res.send(process.env.testRoute)
     }
     newThing(req,res){
         res.send('new thing')
