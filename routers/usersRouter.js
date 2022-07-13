@@ -2,15 +2,22 @@ const express = require('express')
 const router = express.Router()
 
 class UsersRouter {
-    constructor(controller){
+    constructor(controller, authMiddleware){
         this.controller = controller
+        this.authMiddleware = authMiddleware
     }
     routes(){
         // we will insert routes into here later on
-        router.get('/test', this.controller.testRoute.bind(this.controller))
+        // Login and signup routes
+        router.post('/signUp', this.controller.signUp.bind(this.controller))
+        router.post('/login', this.controller.login.bind(this.controller))
+
+        router.use(this.authMiddleware)
+
+        router.get('/test',this.controller.anotherone.bind(this.controller))
         router.get('/', this.controller.testRoute.bind(this.controller))
         router.get('/userTest', this.controller.userTest.bind(this.controller))
-        router.post('/add-user', this.controller.insertOne.bind(this.controller))
+        // router.post('/add-user', this.controller.insertOne.bind(this.controller))
         router.get('/user-items/:id', this.controller.getUserItems.bind(this.controller))
         router.get('/user-items-cat/:id', this.controller.getUserItemsWithCat.bind(this.controller))
         return router

@@ -21,8 +21,11 @@ const UsersRouter = require('./routers/usersRouter')
 const ItemsRouter = require('./routers/itemsRouter')
 const CategoryRouter = require('./routers/categoryRouter')
 
+// import middlewares
+const authMiddleware = require('./middleware/auth')()
+
 // initialize routers
-const usersRouter = new UsersRouter(userController).routes()
+const usersRouter = new UsersRouter(userController, authMiddleware).routes()
 const itemsRouter = new ItemsRouter(itemsController).routes()
 const categoryRouter = new CategoryRouter(categoryController).routes()
 

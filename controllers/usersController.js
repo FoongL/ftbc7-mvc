@@ -1,6 +1,6 @@
-// const db = require('../models')
 const BaseController = require('./baseController')
-// const db = require('../models/index')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 class UserController extends BaseController {
     constructor(model, db) {
@@ -40,6 +40,43 @@ class UserController extends BaseController {
         res.json(getItems)
     }
 
+    async signUp(req,res){
+        const { name, password } = req.body
+        try{
+            const nameCheck = await this.model.findOne({where: { name }})
+            console.log('name Check:', nameCheck)
+            if(nameCheck){
+                return res.status(400).json({success: false, msg: 'username already in use'})
+            }
+            const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT_ROUND))
+            const newUser = await this.model.create({name, password: hashedPassword})
+            const payload = { id: newUser.id, name: newUser.name }
+            const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXP})
+            return res.json({newUser, token})
+        }catch(err){
+            console.log(err)
+        }
+        console.log('signup Route')
+    }
+
+    async login(req,res){
+        const { name, password } = req.body
+        try{
+            const user = await this.model.findOne({where: { name }})
+            if(!user){
+                return res.json({success: failed, msg:'user does not exist'})
+            }
+            const compare = await bcrypt.compare(password, user.password)
+            if(!compare){
+                return res.json({success: failed, msg:'you have the wrong password, dumbass'})
+            }
+            const payload = {id: user.id, name: user.name}
+            const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXP})
+            return res.json({user, token})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
 }
 
