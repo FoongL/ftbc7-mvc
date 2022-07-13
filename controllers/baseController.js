@@ -18,6 +18,7 @@ class BaseController {
     }
 
     anotherone(req,res){
+        console.log('the user that is calling this is', req.user)
         res.send('DJ KHALID')
     }
 
