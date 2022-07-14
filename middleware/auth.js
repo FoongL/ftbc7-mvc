@@ -9,7 +9,7 @@ const authenticateJWT = () => async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err)
-    return res.json({ msg: "JWT expired" });
+    return res.status(403).json({ msg: "JWT expired" });
   }
 };
 

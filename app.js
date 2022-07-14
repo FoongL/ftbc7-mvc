@@ -38,7 +38,7 @@ app.use(express.static("public"));
 app.use(cookieParser())
 
 
-app.get('/', (req, res)=> res.render('axios'))
+app.get('/', (req, res)=> res.render('home'))
 
 app.use('/users', usersRouter)
 app.use('/items', itemsRouter)
