@@ -14,7 +14,7 @@ class UsersRouter {
 
         router.use(this.authMiddleware)
 
-        router.get('/test',this.controller.anotherone.bind(this.controller))
+        router.post('/test',this.controller.anotherone.bind(this.controller))
         router.get('/', this.controller.testRoute.bind(this.controller))
         router.get('/userTest', this.controller.userTest.bind(this.controller))
         // router.post('/add-user', this.controller.insertOne.bind(this.controller))

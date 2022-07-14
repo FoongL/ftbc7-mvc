@@ -52,7 +52,7 @@ class UserController extends BaseController {
             const newUser = await this.model.create({name, password: hashedPassword})
             const payload = { id: newUser.id, name: newUser.name }
             const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXP})
-            return res.json({newUser, token})
+            return res.json({token})
         }catch(err){
             console.log(err)
         }
