@@ -7,7 +7,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
-console.log(config)
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -52,9 +52,11 @@ db.categories = initCategoriesModel(sequelize, Sequelize.DataTypes)
 db.items.belongsToMany(db.categories, {through: 'category-item'})
 db.categories.belongsToMany(db.items, {through: 'category-item'})
 
-// db.items.belongsToMany(db.categories)
-// db.categories.belongsToMany(db.items)
-
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connected to SQL database');
+  })
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

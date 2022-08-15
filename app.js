@@ -6,13 +6,22 @@ require('dotenv').config()
 // import models
 const db = require('./models/index.js')
 
+// starting Mongo
+require('./mongo')
+
+// import Mongo Models
+const UserMongo = require('./mongo/users')
+
+// initiate model
+const userMongo = new UserMongo()
+
 // import controllers
 const UsersController = require('./controllers/usersController.js')
 const ItemsController = require('./controllers/itemsController.js')
 const CategoryController = require('./controllers/categoryController.js')
 
 // initializing Controllers
-const userController = new UsersController(db.users, db)
+const userController = new UsersController(db.users, db, userMongo)
 const itemsController = new ItemsController(db.items, db)
 const categoryController = new CategoryController(db.categories, db)
 
