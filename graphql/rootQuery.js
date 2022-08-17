@@ -9,24 +9,12 @@ const db = require("../models");
 
 const { UsersTypes } = require("./types/userTypes");
 
+const userQueries = require("./query/userQuery");
+
 const RootQuery = new GraphQLObjectType({
   name: "inClassSampleQuery",
   fields: {
-    getAllUsers: {
-      type: new GraphQLList(UsersTypes),
-      resolve(parent, args) {
-        return db.users.findAll({});
-      },
-    },
-    findUserById: {
-      type: UsersTypes,
-      args: {
-        userId: { type: GraphQLInt },
-      },
-      resolve(parent, args) {
-        return db.users.findByPk(args.userId);
-      },
-    },
+    ...userQueries,
   },
 });
 
