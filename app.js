@@ -52,6 +52,7 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 app.get("/", (req, res) => res.render("home"));
+app.get('/hack', (req, res) => res.render("hack"))
 
 app.use("/users", usersRouter);
 app.use("/items", itemsRouter);

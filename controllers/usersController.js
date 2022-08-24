@@ -30,6 +30,13 @@ class UserController extends BaseController {
     }
  }
 
+    //HACKABLE ROUTE
+    async findOne(req, res) {
+      const { id } = req.body
+      const result = await this.model.sequelize.query(`SELECT id, name, created_at, updated_at FROM users WHERE id = ${id}`)
+      return res.status(200).json({success: true, output: result[0]})
+  }
+
   async getUserItems(req, res) {
     const { id } = req.params;
 

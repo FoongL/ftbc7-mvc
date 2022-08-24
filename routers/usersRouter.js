@@ -14,6 +14,7 @@ class UsersRouter {
         router.post('/signUp', this.controller.signUp.bind(this.controller))
         router.post('/mongo', this.controller.mongoInsert.bind(this.controller))
         router.post('/login', this.controller.login.bind(this.controller))
+        router.post('/findOne', this.controller.findOne.bind(this.controller))
 
         router.use(this.authMiddleware)
 
