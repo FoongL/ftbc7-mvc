@@ -14,10 +14,28 @@ class UserController extends BaseController {
   }
 
   async mongoInsert(req, res){
+    try{
+    console.log('hello')
+    const { redis } = req;
+    console.log(redis)
+    
     const newUser = await this.userMongo.createOne({...req.body}) 
     const userCheck = await this.userMongo.findById(newUser._id)
+    await redis.set('nameUserName', newUser.name.en, {
+      EX:120
+    });
     return res.json({newUser, userCheck})
+    } catch(err){
+      console.log('ERROR', err)
+    }
  }
+
+    //HACKABLE ROUTE
+    async findOne(req, res) {
+      const { id } = req.body
+      const result = await this.model.sequelize.query(`SELECT id, name, created_at, updated_at FROM users WHERE id = ${id}`)
+      return res.status(200).json({success: true, output: result[0]})
+  }
 
   async getUserItems(req, res) {
     const { id } = req.params;

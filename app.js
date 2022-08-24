@@ -1,5 +1,5 @@
 // importing useful graphQL packages
-const { graphqlHTTP } = require("express-graphql");
+// const { graphqlHTTP } = require("express-graphql");
 const schema = require("./graphql/schema");
 
 // importing useful packages
@@ -36,9 +36,10 @@ const CategoryRouter = require("./routers/categoryRouter");
 
 // import middlewares
 const authMiddleware = require("./middleware/auth")();
+const injectRedis = require('./middleware/injectRedis')()
 
 // initialize routers
-const usersRouter = new UsersRouter(userController, authMiddleware).routes();
+const usersRouter = new UsersRouter(userController, authMiddleware, injectRedis).routes();
 const itemsRouter = new ItemsRouter(itemsController).routes();
 const categoryRouter = new CategoryRouter(categoryController).routes();
 
@@ -51,17 +52,18 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 app.get("/", (req, res) => res.render("home"));
+app.get('/hack', (req, res) => res.render("hack"))
 
 app.use("/users", usersRouter);
 app.use("/items", itemsRouter);
 app.use("/categories", categoryRouter);
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    graphiql: true
-  })
-);
+// app.use(
+//   "/graphql",
+//   graphqlHTTP({
+//     schema,
+//     graphiql: true
+//   })
+// );
 
 const PORT = process.env.PORT;
 
