@@ -1,8 +1,8 @@
-const redis = require("../lib/redis");
+// const redis = require("../lib/redis");
 
-const injectRedis = () => async (req, res, next) => {
-  req.redis = await redis;
-  next();
-};
+// const injectRedis = () => async (req, res, next) => {
+//   req.redis = await redis;
+//   next();
+// };
 
-module.exports = injectRedis;
+// module.exports = injectRedis;

@@ -36,10 +36,10 @@ const CategoryRouter = require("./routers/categoryRouter");
 
 // import middlewares
 const authMiddleware = require("./middleware/auth")();
-const injectRedis = require('./middleware/injectRedis')()
+// const injectRedis = require('./middleware/injectRedis')()
 
 // initialize routers
-const usersRouter = new UsersRouter(userController, authMiddleware, injectRedis).routes();
+const usersRouter = new UsersRouter(userController, authMiddleware).routes();
 const itemsRouter = new ItemsRouter(itemsController).routes();
 const categoryRouter = new CategoryRouter(categoryController).routes();
 

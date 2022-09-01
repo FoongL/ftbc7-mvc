@@ -2,13 +2,12 @@ const express = require('express')
 const router = express.Router()
 
 class UsersRouter {
-    constructor(controller, authMiddleware, injectRedis){
+    constructor(controller, authMiddleware){
         this.controller = controller
         this.authMiddleware = authMiddleware
-        this.injectRedis = injectRedis
+        // this.injectRedis = injectRedis
     }
     routes(){
-        router.use(this.injectRedis)
         // we will insert routes into here later on
         // Login and signup routes
         router.post('/signUp', this.controller.signUp.bind(this.controller))
